@@ -1,4 +1,16 @@
 package com.example.bookshop.domain.entities;
 
-public class Book {
+import lombok.*;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table
+public class Book extends BaseEntity{
 }
