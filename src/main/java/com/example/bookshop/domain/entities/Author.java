@@ -20,6 +20,6 @@ public class Author extends BaseEntity {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @OneToMany
+    @OneToMany(targetEntity = Book.class, mappedBy = "author")
     private Set<Book> books;
 }
