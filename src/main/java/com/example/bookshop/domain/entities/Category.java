@@ -14,6 +14,6 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Category extends BaseEntity {
-    @Column(nullable = false)
+    @Column
     private String name;
 }
