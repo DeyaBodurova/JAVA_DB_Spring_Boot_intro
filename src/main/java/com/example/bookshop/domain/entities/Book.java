@@ -28,7 +28,8 @@ public class Book extends BaseEntity {
     private Integer copies;
     @Column(name = "release_date")
     private LocalDate releaseDate;
-@Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private AgeRestriction ageRestriction;
-
+    @ManyToOne
+    private Author author;
 }
