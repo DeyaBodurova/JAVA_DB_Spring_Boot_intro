@@ -18,7 +18,7 @@ import java.util.Set;
 public class Author extends BaseEntity {
     @Column(name = "fist_name")
     private String firstName;
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
     @OneToMany(targetEntity = Book.class, mappedBy = "author")
     private Set<Book> books;
