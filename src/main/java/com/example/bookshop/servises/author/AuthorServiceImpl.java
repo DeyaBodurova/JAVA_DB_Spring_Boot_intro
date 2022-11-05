@@ -9,15 +9,16 @@ import java.util.List;
 
 @Service
 public class AuthorServiceImpl implements AuthorService {
-private final AuthorRepository authorRepository;
-@Autowired
+    private final AuthorRepository authorRepository;
+
+    @Autowired
     public AuthorServiceImpl(AuthorRepository authorRepository) {
         this.authorRepository = authorRepository;
     }
 
     @Override
     public void seedAuthors(List<Author> authors) {
-this.authorRepository.saveAll(authors);
+        this.authorRepository.saveAll(authors);
     }
 
 }
