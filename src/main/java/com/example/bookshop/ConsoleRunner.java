@@ -8,19 +8,19 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ConsoleRunnerImpl implements CommandLineRunner {
+public class ConsoleRunner implements CommandLineRunner {
 
     private final AuthorRepository authorRepository;
     private final CategoryRepository categoryRepository;
+    private final BookRepository bookRepository;
+
 
     @Autowired
-    public ConsoleRunnerImpl(AuthorRepository authorRepository, CategoryRepository categoryRepository, BookRepository bookRepository) {
+    public ConsoleRunner(AuthorRepository authorRepository, CategoryRepository categoryRepository, BookRepository bookRepository) {
         this.authorRepository = authorRepository;
         this.categoryRepository = categoryRepository;
         this.bookRepository = bookRepository;
     }
-
-    private final BookRepository bookRepository;
 
     @Override
     public void run(String... args) throws Exception {
