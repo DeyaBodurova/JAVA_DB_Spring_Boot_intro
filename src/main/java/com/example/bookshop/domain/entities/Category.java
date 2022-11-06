@@ -16,4 +16,5 @@ import javax.persistence.Table;
 public class Category extends BaseEntity {
     @Column
     private String name;
+
 }
