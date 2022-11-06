@@ -18,7 +18,7 @@ public class SeedServiceImpl implements SeedService {
 
     @Override
     public void seedAuthors() {
-
+        RESOUR
     }
 
     @Override
