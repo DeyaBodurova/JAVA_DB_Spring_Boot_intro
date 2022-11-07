@@ -5,4 +5,8 @@ import java.util.List;
 
 public interface CategoryService {
  void seedCategories(List<Category> categories);
+
+ boolean isDataSeeded();
+
+ Set<Category> getRandomCategories();
 }

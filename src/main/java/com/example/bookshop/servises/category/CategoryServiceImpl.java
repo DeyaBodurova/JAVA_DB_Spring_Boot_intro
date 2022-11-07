@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
+
     private final CategoryRepository categoryRepository;
 
     @Autowired
@@ -19,5 +20,23 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void seedCategories(List<Category> categories) {
         this.categoryRepository.saveAll(categories);
+    }
+
+    @Override
+    public boolean isDataSeeded() {
+        return this.categoryRepository.count() > 0;
+    }
+
+    @Override
+    public Set<Category> getRandomCategories() {
+        final long count = this.categoryRepository.count();
+
+        if (count != 0) {
+            final long randomAuthorId = new Random().nextLong(1L, count) + 1L;
+
+            return Set.of(this.categoryRepository.findById(randomAuthorId).orElseThrow(NoSuchElementException::new));
+        }
+
+        throw new RuntimeException();
     }
 }
