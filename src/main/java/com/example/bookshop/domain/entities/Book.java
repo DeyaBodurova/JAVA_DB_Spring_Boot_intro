@@ -1,6 +1,7 @@
 package com.example.bookshop.domain.entities;
-import com.softuni.bookshop.domain.enums.AgeRestriction;
-import com.softuni.bookshop.domain.enums.EditionType;
+import com.example.bookshop.domain.enums.AgeRestriction;
+import com.example.bookshop.domain.enums.EditionType;
+
 import lombok.*;
 
 import javax.persistence.*;
