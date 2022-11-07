@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class BookServiceImpl implements BookService {
+
     private final BookRepository bookRepository;
 
     @Autowired
@@ -19,5 +20,16 @@ public class BookServiceImpl implements BookService {
     @Override
     public void seedBooks(List<Book> books) {
         this.bookRepository.saveAll(books);
+    }
+
+    @Override
+    public List<Book> findAllByReleaseDateAfter(LocalDate date) {
+        return this.bookRepository.findAllByReleaseDateAfter(date).orElseThrow(NoSuchElementException::new);
+    }
+
+    @Override
+    public List<Book> findAllByAuthorFirstNameAndAuthorLastNameOrderByReleaseDateDescTitleAsc(String firstName, String lastName) {
+        return this.bookRepository.findAllByAuthorFirstNameAndAuthorLastNameOrderByReleaseDateDescTitleAsc(firstName, lastName)
+                .orElseThrow(NoSuchElementException::new);
     }
 }
