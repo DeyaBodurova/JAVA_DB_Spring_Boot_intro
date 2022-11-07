@@ -1,8 +1,26 @@
 package com.example.bookshop.servises.seed;
 
+import com.example.bookshop.domain.entities.Author;
+import com.example.bookshop.domain.entities.Book;
+import com.example.bookshop.domain.entities.Category;
+import com.example.bookshop.domain.enums.AgeRestriction;
+import com.example.bookshop.domain.enums.EditionType;
+import com.example.bookshop.servises.author.AuthorService;
 import com.example.bookshop.servises.book.BookService;
 import com.example.bookshop.servises.category.CategoryService;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.example.bookshop.Constants.FilePath.*;
 
 @Component
 public class SeedServiceImpl implements SeedService {
@@ -62,7 +80,8 @@ public class SeedServiceImpl implements SeedService {
     @Override
     public void seedCategory() throws IOException {
         if (!this.categoryService.isDataSeeded()) {
-            this.categoryService.seedCategories(Files.readAllLines(Path.of(RESOURCE_URL + CATEGORY_FILE_NAME))
+            this.categoryService.seedCategories(Files
+                    .readAllLines(Path.of(RESOURCE_URL + CATEGORY_FILE_NAME))
                     .stream()
                     .filter(s -> !s.isBlank())
                     .map(name -> Category.builder()
