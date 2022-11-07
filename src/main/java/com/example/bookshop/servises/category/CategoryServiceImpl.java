@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Random;
+import java.util.Set;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -34,7 +37,8 @@ public class CategoryServiceImpl implements CategoryService {
         if (count != 0) {
             final long randomAuthorId = new Random().nextLong(1L, count) + 1L;
 
-            return Set.of(this.categoryRepository.findById(randomAuthorId).orElseThrow(NoSuchElementException::new));
+            return Set.of(this.categoryRepository.findById(randomAuthorId)
+                    .orElseThrow(NoSuchElementException::new));
         }
 
         throw new RuntimeException();
