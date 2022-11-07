@@ -1,8 +1,6 @@
 package com.example.bookshop;
 
-import com.example.bookshop.repositories.AuthorRepository;
-import com.example.bookshop.repositories.BookRepository;
-import com.example.bookshop.repositories.CategoryRepository;
+
 import com.example.bookshop.servises.author.AuthorService;
 import com.example.bookshop.servises.book.BookService;
 import com.example.bookshop.servises.seed.SeedService;
