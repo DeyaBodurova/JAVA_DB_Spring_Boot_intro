@@ -10,20 +10,50 @@ import org.springframework.stereotype.Component;
 @Component
 public class ConsoleRunner implements CommandLineRunner {
 
-    private final AuthorRepository authorRepository;
-    private final CategoryRepository categoryRepository;
-    private final BookRepository bookRepository;
+    private final LocalDate BOOK_YEAR_AFTER = LocalDate.of(2000, 1, 1);
+    private final LocalDate BOOK_YEAR_BEFORE = LocalDate.of(1990, 1, 1);
 
+    private final SeedService seedService;
+    private final BookService bookService;
+    private final AuthorService authorService;
 
     @Autowired
-    public ConsoleRunner(AuthorRepository authorRepository, CategoryRepository categoryRepository, BookRepository bookRepository) {
-        this.authorRepository = authorRepository;
-        this.categoryRepository = categoryRepository;
-        this.bookRepository = bookRepository;
+    public ConsoleRunner(SeedService seedService, BookService bookService, AuthorService authorService) {
+        this.seedService = seedService;
+        this.bookService = bookService;
+        this.authorService = authorService;
     }
 
     @Override
     public void run(String... args) throws Exception {
+        this.seedService.seedAllData();
+        this.getAllOrderByBooks();
+    }
 
+    private void getAllBooksAfterAGivenYear() {
+        this.bookService
+                .findAllByReleaseDateAfter(BOOK_YEAR_AFTER)
+                .forEach(book -> System.out.println(book.getTitle()));
+
+
+    }
+
+    private void getAllAuthorsWithBooksReleaseDateBefore() {
+        this.authorService
+                .findDistinctByBooksBefore(BOOK_YEAR_BEFORE)
+                .forEach(author -> System.out.println(author.getFirstName() + " " + author.getLastName()));
+    }
+
+    private void getAllOrderByBooks() {
+        this.authorService.findAllOrderByBooks()
+                .forEach(author -> System.out.println(author.toStringWithCount()));
+    }
+
+    private void findAllByAuthorFirstNameAndAuthorLastNameOrderByReleaseDateDescTitleAsc() {
+        this.bookService
+                .findAllByAuthorFirstNameAndAuthorLastNameOrderByReleaseDateDescTitleAsc("George", "Powell")
+                .forEach(book -> System.out.println(book.getTitle() + " "
+                        + book.getReleaseDate() + " "
+                        + book.getCopies()));
     }
 }
